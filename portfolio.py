@@ -14,6 +14,7 @@ portfolio = {
     'NVDA': {'shares': 1351},
     'VSPGX': {'shares': 131},
     'WMT': {'shares': 1246},
+    #need to add new securities after new trades below this and recalculate graphs/simulation
 }
 
 symbols = list(portfolio.keys())
