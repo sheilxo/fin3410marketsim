@@ -3,6 +3,7 @@ import numpy as np
 import yfinance as yf
 import matplotlib.pyplot as plt
 
+# Define your updated portfolio
 portfolio = {
     'AAPL': {'shares': 447},
     'ACN': {'shares': 72},
@@ -12,16 +13,18 @@ portfolio = {
     'LULU': {'shares': 375},
     'MSFT': {'shares': 234},
     'NVDA': {'shares': 1351},
-    'VSPGX': {'shares': 131},  
+    'VSPGX': {'shares': 131},  # Vanguard Fund
     'WMT': {'shares': 1246},
 }
 
 symbols = list(portfolio.keys())
 
-start_date = '2024-08-17'  
+# Download historical price data for the last 2 months
+start_date = '2024-08-17'  # Adjust the start date to 2 months before the current date
 end_date = '2024-10-17'
 data = yf.download(symbols, start=start_date, end=end_date)['Adj Close']
 
+# Handle missing data by forward filling
 data = data.ffill().dropna()
 
 for symbol in symbols:
@@ -52,11 +55,12 @@ plt.ylabel('Cumulative Return')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.savefig('cumulative_returns.png')  
-plt.close()  
+plt.savefig('cumulative_returns.png')  # Save the plot as a PNG file
+plt.close()  # Close the figure to free up memory
 
 if not portfolio_cum_returns.empty:
-    period_return = portfolio_cum_returns.iloc[-1]  
+    # Calculate period performance metrics (not annualized)
+    period_return = portfolio_cum_returns.iloc[-1]  # Use iloc to fix the warning
     period_volatility = portfolio_returns.std()
 
     risk_free_rate_annual = 0.05
@@ -72,8 +76,9 @@ else:
     print("No data available for the selected period. Check if stock symbols are correct.")
 
 num_simulations = 1000
-num_days = days_in_period  
+num_days = days_in_period  # Simulate for the same number of days as your period
 
+# Log returns of the portfolio
 log_returns = np.log(1 + portfolio_returns)
 
 u = log_returns.mean()
