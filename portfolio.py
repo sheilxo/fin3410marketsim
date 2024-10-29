@@ -54,11 +54,11 @@ plt.close()
 if not portfolio_cum_returns.empty:
     period_return = portfolio_cum_returns.iloc[-1]
     
-    # Calculate period volatility by scaling daily volatility to the entire period (2 months)
+    days_in_period = len(portfolio_returns)
+    
     period_volatility = portfolio_returns.std() * np.sqrt(days_in_period)
 
     risk_free_rate_annual = 0.05
-    days_in_period = len(portfolio_returns)
     risk_free_rate_period = risk_free_rate_annual * (days_in_period / 252)
 
     portfolio_sharpe_ratio = (period_return - risk_free_rate_period) / period_volatility
