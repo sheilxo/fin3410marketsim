@@ -7,7 +7,7 @@ portfolio = {
     'AAPL': {'shares': 447},
     'ACN': {'shares': 72},
     'ANET': {'shares': 166},
-    'BRK-B': {'shares': 215},  
+    #'BRK-B': {'shares': 215},  
     'JPM': {'shares': 587},
     'LULU': {'shares': 375},
     'MSFT': {'shares': 234},
@@ -15,6 +15,7 @@ portfolio = {
     'VSPGX': {'shares': 131},
     'WMT': {'shares': 1246},
     #need to add new securities after new trades below this and recalculate graphs/simulation
+    # figure out how selling brk.b and shorting oil will affect this later
 }
 
 symbols = list(portfolio.keys())
